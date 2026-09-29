@@ -36,10 +36,39 @@ like in one go.
 3. Select the tags to remove. Every series/movie that has them appears on the right.
 4. Deselect anything you want to keep, then click **Remove**.
 
-Settings are saved to `%APPDATA%\Detaggarr\config.json`. The API key is stored in plain text there.
-
 > Windows SmartScreen may warn on first launch because the exe is unsigned. Choose
 > *More info → Run anyway*.
+
+## Where your API keys are stored
+
+> [!WARNING]
+> Your server URLs and API keys are saved **unencrypted, in plain text** on your PC.
+
+After a successful connection, Detaggarr saves the URL and API key for each service to:
+
+```
+%APPDATA%\Detaggarr\config.json
+```
+
+(usually `C:\Users\<you>\AppData\Roaming\Detaggarr\config.json`). The file looks like this:
+
+```json
+{
+  "Sonarr": { "url": "http://192.168.1.10:8989", "api_key": "..." },
+  "Radarr": { "url": "http://192.168.1.10:7878", "api_key": "..." },
+  "last_service": "Sonarr"
+}
+```
+
+- The keys never leave your PC except in requests to the Sonarr/Radarr URL you enter. Nothing is
+  sent anywhere else, and nothing is stored in this repository or in the `.exe`.
+- Anyone who can log in to your Windows account, or any program running as you, can read this file.
+  Sonarr/Radarr API keys give full control of those apps, so treat the file like a password.
+- To forget your saved details, delete the `Detaggarr` folder above.
+- If you used an early build named *Taggarr*, it also left a copy at
+  `%APPDATA%\Taggarr\config.json`. Detaggarr uses it to carry your settings over until you next
+  connect successfully, and you can delete it after that.
+- If a key is ever exposed, regenerate it in Sonarr/Radarr under *Settings → General → API Key*.
 
 ## Building from source
 
