@@ -14,6 +14,7 @@ APP_NAME = "Detaggarr"
 _APPDATA = os.environ.get("APPDATA", os.path.expanduser("~"))
 CONFIG_DIR = os.path.join(_APPDATA, APP_NAME)
 CONFIG_PATH = os.path.join(CONFIG_DIR, "config.json")
+KEY_MASK = "X"  # character shown in place of each API key character
 LEGACY_CONFIG_PATH = os.path.join(_APPDATA, "Taggarr", "config.json")  # pre-rename
 
 # Bundled files live in sys._MEIPASS when running as a PyInstaller exe.
@@ -182,7 +183,7 @@ class DetaggarrApp(tk.Tk):
         ttk.Label(conn, text="API key:").grid(row=2, column=0, sticky="w")
         key_row = ttk.Frame(conn)
         key_row.grid(row=2, column=1, sticky="ew", pady=2)
-        self.key_entry = ttk.Entry(key_row, textvariable=self.key_var, show="â€¢")
+        self.key_entry = ttk.Entry(key_row, textvariable=self.key_var, show=KEY_MASK)
         self.key_entry.pack(side="left", fill="x", expand=True)
         self.show_key_btn = ttk.Button(key_row, text="Show", width=6, command=self._toggle_key)
         self.show_key_btn.pack(side="left", padx=(4, 0))
@@ -283,7 +284,7 @@ class DetaggarrApp(tk.Tk):
             self.key_entry.configure(show="")
             self.show_key_btn.configure(text="Hide")
         else:
-            self.key_entry.configure(show="â€¢")
+            self.key_entry.configure(show=KEY_MASK)
             self.show_key_btn.configure(text="Show")
 
     def _noun(self, count=2):

@@ -6,6 +6,11 @@
 
 <p align="center">Bulk-remove tags from your Sonarr series and Radarr movies.</p>
 
+> [!NOTE]
+> **AI-generated code.** All of the code in this repository, including the logo generator, was
+> written by an AI assistant (Claude). Review it before relying on it, and consider backing up
+> your Sonarr/Radarr database before making bulk changes.
+
 ---
 
 Detaggarr is a small Windows desktop app that connects to Sonarr or Radarr, shows every tag
